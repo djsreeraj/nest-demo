@@ -3,11 +3,11 @@ import { UsersService } from './users.service';
 
 @Controller('users')
 export class UsersController {
-    constructor(private userService: UsersService){}
+    constructor(private usersService: UsersService){}
 
     @Get()
     getUsers(): any{
-        return [{id: "101"}];
+        return this.usersService.findAll();
     }
 
 
@@ -15,8 +15,6 @@ export class UsersController {
 
     @Get(':id')
     getUserById(@Param('id') id: string): any{
-        return{
-            id
-        }
+        return this.usersService.findById(Number(id));
     }
 }
